@@ -58,22 +58,22 @@ while True:
     cv2.fillPoly(gray, ALLOWED_AREA, (255, 255, 255))
     # Detects cars of different sizes in the input image 
     cars = car_cascade.detectMultiScale(gray, 1.1, 1) 
-    print(cars.size)
-    if cars.size > 0 and isLastFrameDetected == False:
+    print(cars)
+    if type(cars) is list and cars.size > 0 and isLastFrameDetected == False:
         start = time.time()
-    elif cars.size == 0 and isLastFrameDetected == True:
+    elif type(cars) is list and cars.size == 0 and isLastFrameDetected == True:
         elapsedTimeOnTrack = start - time.time()
         print(elapsedTimeOnTrack)
         isLastFrameDetected = False
 
     # To draw a rectangle in each cars 
     for (x,y,w,h) in cars: 
-        cv2.rectangle(frames,(x,y),(x+w,y+h),(0,0,255),2) 
+        cv2.rectangle(image,(x,y),(x+w,y+h),(0,0,255),2) 
   
     # apply red transparent mask on the denied area
-    applyTransparentMask(frames)
+    applyTransparentMask(image)
     # Display frames in a window  
-    cv2.imshow('video2', frames) 
+    cv2.imshow('video2', image) 
       
     # Wait for Esc key to stop 
     if cv2.waitKey(33) == 27: 
