@@ -58,10 +58,11 @@ while True:
     cv2.fillPoly(gray, ALLOWED_AREA, (255, 255, 255))
     # Detects cars of different sizes in the input image 
     cars = car_cascade.detectMultiScale(gray, 1.1, 1) 
-    print(cars)
-    if type(cars) is list and cars.size > 0 and isLastFrameDetected == False:
+    
+    if type(cars) is np.ndarray and isLastFrameDetected == False:
         start = time.time()
-    elif type(cars) is tuple and cars.any() and isLastFrameDetected == True:
+        isLastFrameDetected = True
+    elif type(cars) is tuple and isLastFrameDetected == True:
         elapsedTimeOnTrack = start - time.time()
         print(elapsedTimeOnTrack)
         isLastFrameDetected = False
