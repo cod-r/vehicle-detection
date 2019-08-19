@@ -61,7 +61,7 @@ while True:
     print(cars)
     if type(cars) is list and cars.size > 0 and isLastFrameDetected == False:
         start = time.time()
-    elif type(cars) is list and cars.size == 0 and isLastFrameDetected == True:
+    elif type(cars) is tuple and cars.any() and isLastFrameDetected == True:
         elapsedTimeOnTrack = start - time.time()
         print(elapsedTimeOnTrack)
         isLastFrameDetected = False
