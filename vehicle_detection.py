@@ -2,10 +2,14 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+import json
 
 from picamera import PiCamera
 import picamera.array
-from flask import Flask
+from flask import Flask, make_response
+
+DEVICE_ID = 1
+SURVEILLANCE_AREA = "Calea Victoriei nr. xyz"
 
 ALLOWED_AREA = np.array([
     [[0, 0], [200, 0], [200, 240], [0, 240]]
@@ -17,6 +21,9 @@ DENIED_AREA = np.array([
 ALLOWED_COLOR = (66, 183, 42)
 DENIED_COLOR = (0, 0, 255)
 
+isLaneOccupied = False
+occupiedTimeElapsed = 0
+
 picam = PiCamera()
 picam.framerate = 10
 picam.resolution = (320, 240)
@@ -25,9 +32,17 @@ picam.rotation = 180
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def get_surveillance_details():
+    jsonObject = json.dumps({
+        "ID dispozitiv": DEVICE_ID,
+        "Locatia supravegheata": SURVEILLANCE_AREA,
+        "Pista ocupata": isLaneOccupied,
+        "Timp ocupare pista": occupiedTimeElapsed
+        })
 
+    apiResponse = make_response(jsonObject)
+    apiResponse.mimetype = 'application/json'
+    return apiResponse
 
 def capture_image():
     raw_capture = picamera.array.PiRGBArray(picam)
@@ -64,8 +79,10 @@ while True:
         isLastFrameDetected = True
     elif type(cars) is tuple and isLastFrameDetected == True:
         elapsedTimeOnTrack = start - time.time()
-        print(elapsedTimeOnTrack)
-        isLastFrameDetected = False
+        if elapsedTimeOnTrack > 1:
+            print(elapsedTimeOnTrack)
+            occupiedTimeElapsed = elapsedTimeOnTrack
+            isLastFrameDetected = False
 
     # To draw a rectangle in each cars 
     for (x,y,w,h) in cars: 
