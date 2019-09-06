@@ -44,6 +44,8 @@ def get_surveillance_details():
     apiResponse.mimetype = 'application/json'
     return apiResponse
 
+app.run()
+
 def capture_image():
     raw_capture = picamera.array.PiRGBArray(picam)
     picam.capture(raw_capture, format='rgb', use_video_port=True)
