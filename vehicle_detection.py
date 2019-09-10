@@ -6,7 +6,6 @@ import json
 
 from picamera import PiCamera
 import picamera.array
-from flask import Flask, make_response
 
 DEVICE_ID = 1
 SURVEILLANCE_AREA = "Calea Victoriei nr. xyz"
@@ -27,24 +26,7 @@ occupiedTimeElapsed = 0
 picam = PiCamera()
 picam.framerate = 10
 picam.resolution = (320, 240)
-picam.rotation = 180
 
-app = Flask(__name__)
-
-@app.route('/')
-def get_surveillance_details():
-    jsonObject = json.dumps({
-        "ID dispozitiv": DEVICE_ID,
-        "Locatia supravegheata": SURVEILLANCE_AREA,
-        "Pista ocupata": isLaneOccupied,
-        "Timp ocupare pista": occupiedTimeElapsed
-        })
-
-    apiResponse = make_response(jsonObject)
-    apiResponse.mimetype = 'application/json'
-    return apiResponse
-
-app.run()
 
 def capture_image():
     raw_capture = picamera.array.PiRGBArray(picam)
