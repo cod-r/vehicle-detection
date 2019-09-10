@@ -64,8 +64,7 @@ while True:
         start = time.time()
         isLastFrameDetected = True
     elif type(cars) is tuple and isLastFrameDetected == True:
-        totalTimeOnTrack = start - time.time()
-        print(totalTimeOnTrack)
+        totalTimeOnTrack = time.time() - start
 
         if totalTimeOnTrack > 1.0:
             print('totalTimeOnTrack')
