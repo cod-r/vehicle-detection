@@ -22,7 +22,7 @@ DENIED_COLOR = (0, 0, 255)
 
 isLaneOccupied = False
 occupiedTimeElapsed = 0
-elapsedTimeOnTrack = 0
+totalTimeOnTrack = 0
 
 picam = PiCamera()
 picam.framerate = 10
@@ -64,13 +64,13 @@ while True:
         start = time.time()
         isLastFrameDetected = True
     elif type(cars) is tuple and isLastFrameDetected == True:
-        elapsedTimeOnTrack = start - time.time()
-        if elapsedTimeOnTrack > 1:
-            print(elapsedTimeOnTrack)
-            occupiedTimeElapsed = elapsedTimeOnTrack
+        totalTimeOnTrack = start - time.time()
+        if totalTimeOnTrack > 1:
+            print(totalTimeOnTrack)
+            occupiedTimeElapsed = totalTimeOnTrack
             isLastFrameDetected = False
 
-    if elapsedTimeOnTrack > 30 and isLaneOccupied == False:
+    if totalTimeOnTrack > 30 and isLaneOccupied == False:
         isLaneOccupied = True
 
         jsonResponse = json.dumps({
@@ -83,7 +83,7 @@ while True:
         with open('data.json', 'w', encoding='utf-8') as f:
             json.dump(jsonResponse, f, ensure_ascii=False, indent=4)
 
-    elif elapsedTimeOnTrack < 30 and isLaneOccupied == True:
+    elif totalTimeOnTrack < 30 and isLaneOccupied == True:
         isLaneOccupied = False
 
         jsonResponse = json.dumps({
