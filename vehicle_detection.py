@@ -65,12 +65,12 @@ while True:
         isLastFrameDetected = True
     elif type(cars) is tuple and isLastFrameDetected == True:
         totalTimeOnTrack = start - time.time()
-        if totalTimeOnTrack > 1:
+        if totalTimeOnTrack > 1.0:
             print(totalTimeOnTrack)
             occupiedTimeElapsed = totalTimeOnTrack
             isLastFrameDetected = False
 
-    if totalTimeOnTrack > 30 and isLaneOccupied == False:
+    if totalTimeOnTrack > 30.0 and isLaneOccupied == False:
         isLaneOccupied = True
 
         jsonResponse = json.dumps({
@@ -83,7 +83,7 @@ while True:
         with open('data.json', 'w', encoding='utf-8') as f:
             json.dump(jsonResponse, f, ensure_ascii=False, indent=4)
 
-    elif totalTimeOnTrack < 30 and isLaneOccupied == True:
+    elif totalTimeOnTrack < 30.0 and isLaneOccupied == True:
         isLaneOccupied = False
 
         jsonResponse = json.dumps({
