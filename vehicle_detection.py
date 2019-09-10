@@ -65,8 +65,10 @@ while True:
         isLastFrameDetected = True
     elif type(cars) is tuple and isLastFrameDetected == True:
         totalTimeOnTrack = start - time.time()
+        print(totalTimeOnTrack)
+
         if totalTimeOnTrack > 1.0:
-            print(totalTimeOnTrack)
+            print('totalTimeOnTrack')
             occupiedTimeElapsed = totalTimeOnTrack
             isLastFrameDetected = False
 
