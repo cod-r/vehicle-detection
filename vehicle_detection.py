@@ -28,6 +28,7 @@ picam = PiCamera()
 picam.framerate = 10
 picam.resolution = (320, 240)
 
+# Reset the file at program start
 jsonResponse = json.dumps({
         "ID dispozitiv": DEVICE_ID,
         "Locatia supravegheata": SURVEILLANCE_AREA,
