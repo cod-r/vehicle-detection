@@ -57,7 +57,7 @@ while True:
     # apply a mask to allowed area to exclude that area from detection
     cv2.fillPoly(gray, ALLOWED_AREA, (255, 255, 255))
     # Detects cars of different sizes in the input image 
-    cars = car_cascade.detectMultiScale(gray, 1.1, 1) 
+    cars = car_cascade.detectMultiScale(gray, 1.1, 3) 
     
     # Measure time spent on track
     if type(cars) is np.ndarray and isLastFrameDetected == False:
