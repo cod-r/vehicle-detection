@@ -69,7 +69,7 @@ while True:
             occupiedTimeElapsed = elapsedTimeOnTrack
             isLastFrameDetected = False
 
-    if elapsedTimeOnTrack > 30 and isLaneOccupied = False:
+    if elapsedTimeOnTrack > 30 and isLaneOccupied == False:
         isLaneOccupied = True
 
         jsonResponse = json.dumps({
@@ -82,7 +82,7 @@ while True:
         with open('data.json', 'w', encoding='utf-8') as f:
             json.dump(jsonResponse, f, ensure_ascii=False, indent=4)
 
-    elif isLaneOccupied = True and elapsedTimeOnTrack < 30
+    elif isLaneOccupied == True and elapsedTimeOnTrack < 30
         isLaneOccupied = False
 
         jsonResponse = json.dumps({
