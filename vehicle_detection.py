@@ -61,7 +61,7 @@ while True:
     
     cars = car_cascade.detectMultiScale(gray, 
             scaleFactor=1.1,
-            minNeighbors=5,
+            minNeighbors=1,
             minSize=(10, 10)
         )
 
