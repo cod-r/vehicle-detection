@@ -82,7 +82,7 @@ while True:
         with open('data.json', 'w', encoding='utf-8') as f:
             json.dump(jsonResponse, f, ensure_ascii=False, indent=4)
 
-    elif isLaneOccupied == True and (elapsedTimeOnTrack < 30)
+    elif elapsedTimeOnTrack < 30 and isLaneOccupied == True:
         isLaneOccupied = False
 
         jsonResponse = json.dumps({
