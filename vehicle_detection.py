@@ -28,6 +28,17 @@ picam = PiCamera()
 picam.framerate = 10
 picam.resolution = (320, 240)
 
+jsonResponse = json.dumps({
+        "ID dispozitiv": DEVICE_ID,
+        "Locatia supravegheata": SURVEILLANCE_AREA,
+        "Pista ocupata": isLaneOccupied,
+        "Timp ocupare pista": occupiedTimeElapsed
+        })
+
+with open('data.json', 'w', encoding='utf-8') as f:
+    json.dump(jsonResponse, f, ensure_ascii=False, indent=4)
+
+
 
 def capture_image():
     raw_capture = picamera.array.PiRGBArray(picam)
