@@ -109,7 +109,7 @@ while True:
         "ID dispozitiv": DEVICE_ID,
         "Locatia supravegheata": SURVEILLANCE_AREA,
         "Pista ocupata": isLaneOccupied,
-        "Timp ocupare pista": occupiedTimeElapsed
+        "Timp ocupare pista": 0
         })
 
         with open('data.json', 'w', encoding='utf-8') as f:
