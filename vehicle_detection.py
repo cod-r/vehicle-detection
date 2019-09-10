@@ -59,7 +59,7 @@ while True:
     # Detects cars of different sizes in the input image 
     # cars = car_cascade.detectMultiScale(gray, 1.1, 3) 
     
-    cars = car_cascade.detectMultiScale(image, 
+    cars = car_cascade.detectMultiScale(gray, 
             scaleFactor=1.1,
             minNeighbors=5,
             minSize=(10, 10)
