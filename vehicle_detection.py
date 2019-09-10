@@ -22,6 +22,7 @@ DENIED_COLOR = (0, 0, 255)
 
 isLaneOccupied = False
 occupiedTimeElapsed = 0
+elapsedTimeOnTrack = 0
 
 picam = PiCamera()
 picam.framerate = 10
