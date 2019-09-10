@@ -62,10 +62,9 @@ while True:
     cars = car_cascade.detectMultiScale(image, 
             scaleFactor=1.1,
             minNeighbors=5,
-            minSize=(10, 10),
-            flags=cv2.CASCADE_SCALE_IMAGE
+            minSize=(10, 10)
         )
-    
+
     # Measure time spent on track
     if type(cars) is np.ndarray and isLastFrameDetected == False:
         start = time.time()
