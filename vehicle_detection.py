@@ -67,7 +67,7 @@ while True:
         totalTimeOnTrack = time.time() - start
 
         if totalTimeOnTrack > 1.0:
-            print('totalTimeOnTrack')
+            print(totalTimeOnTrack)
             occupiedTimeElapsed = totalTimeOnTrack
             isLastFrameDetected = False
 
